@@ -1,3 +1,4 @@
+import { site, whatsappUrl } from "../src/lib/content";
 import { test, expect } from "@playwright/test";
 
 test("hero, sector carousel, demo navigation and close", async ({
@@ -109,4 +110,27 @@ test("metadata, sitemap and robots", async ({ request }) => {
   expect(await (await request.get("/robots.txt")).text()).toContain(
     "sitemap.xml",
   );
+});
+
+// Validate destinations without opening WhatsApp or sending any message.
+test("WhatsApp encodes sector and plan messages and rejects invalid numbers", async () => {
+  const original = site.whatsapp;
+  try {
+    site.whatsapp = "+506 1234-5678";
+    for (const context of [
+      "un sitio web para medicina estética",
+      "el plan Tienda online",
+    ]) {
+      const url = new URL(whatsappUrl(context)!);
+      expect(url.hostname).toBe("wa.me");
+      expect(url.pathname).toBe("/50612345678");
+      expect(url.searchParams.get("text")).toBe(
+        `Hola, me gustaría conversar sobre ${context}.`,
+      );
+    }
+    site.whatsapp = "por definir";
+    expect(whatsappUrl()).toBeNull();
+  } finally {
+    site.whatsapp = original;
+  }
 });
