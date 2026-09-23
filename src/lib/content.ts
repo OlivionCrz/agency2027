@@ -4,13 +4,13 @@ export const site = {
   description:
     "Sitios web para emprendimientos que quieren dar su próximo paso. Diseño, desarrollo y SEO en Costa Rica.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "",
+  whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "50685090277",
 };
 
-export function whatsappUrl(context = "mi próximo sitio web") {
+export function whatsappUrl(message = "Hola, quiero cotizar mi sitio web") {
   const number = site.whatsapp.replace(/[\s()+-]/g, "");
   return /^\d{8,15}$/.test(number)
-    ? `https://wa.me/${number}?text=${encodeURIComponent(`Hola, me gustaría conversar sobre ${context}.`)}`
+    ? `https://wa.me/${number}?text=${encodeURIComponent(message)}`
     : null;
 }
 

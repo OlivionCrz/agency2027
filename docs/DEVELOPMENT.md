@@ -38,11 +38,11 @@ Nunca publicar con `NEXT_PUBLIC_SITE_URL=http://localhost:3000`; ese valor exist
 
 ## Validación
 
-Las pruebas Playwright cubren carrusel circular, cambio de negocio con demo abierta, navegación interna de floristería, foco al abrir y cerrar, rutas directas, sitio médico real incrustado, enlace externo, 404, ausencia de WhatsApp sin número, menú móvil, movimiento reducido, ausencia de desbordamiento horizontal, sitemap y robots. La prueba médica depende de la disponibilidad del sitio externo: si falla, revisar red y cabeceras antes de cambiar el código.
+Las pruebas Playwright cubren carrusel circular, cambio de negocio con demo abierta, navegación interna de floristería, foco al abrir y cerrar, rutas directas, header médico real visible antes de explorar, enlace externo, 404, mensaje y número exactos de WhatsApp, desactivación sin número, menú móvil, movimiento reducido, ausencia de desbordamiento horizontal, sitemap y robots. La prueba médica depende de la disponibilidad del sitio externo: si falla, revisar red y cabeceras antes de cambiar el código.
 
 Las capturas y trazas quedan en directorios ignorados `artifacts/` y `test-results/`. Revisar visualmente a 390 y 1440 píxeles. No probar formularios reales de pacientes ni enviar mensajes de prueba a clientes.
 
-Antes de activar un número, comprobar manualmente que el enlace `wa.me` tiene el prefijo de país y el mensaje correcto para cada sector o plan, sin enviar mensajes. Después de cambiar el dominio médico, repetir la prueba de incrustación.
+Antes de activar un número, comprobar manualmente que el enlace `wa.me` tiene el prefijo de país y el mensaje predeterminado «Hola, quiero cotizar mi sitio web», sin enviar mensajes. Después de cambiar el dominio médico, repetir la prueba de incrustación.
 
 ## Límites deliberados
 
@@ -53,3 +53,7 @@ No hay panel privado, portal, cobros, analítica, CRM ni almacenamiento. Supabas
 - Verificación local: build de producción, TypeScript y formato.
 - Diez escenarios Playwright pasan entre escritorio y móvil, incluido el sitio médico real y la construcción de mensajes WhatsApp sin envío.
 - Vercel CLI comprobado: sesión cerrada. No se publicó un deployment ni se creó un remoto Git; iniciar sesión y seguir la guía anterior.
+
+## Ajuste cinematográfico
+
+La rama `feat/cinematic-showcase` amplía la entrada a 100svh con navbar superpuesta, ensancha las secciones y coloca las flechas a los lados del sitio. Sector y acciones quedan debajo del visor, seguidos de la frase sobre el negocio. WhatsApp usa el mismo mensaje de cotización en todos los botones. El sitio médico se muestra directamente y sus animaciones y contenido dependen del proyecto publicado.

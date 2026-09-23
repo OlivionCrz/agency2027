@@ -143,7 +143,6 @@ export function Plans() {
               className={
                 plan.featured ? "button button-green" : "button button-outline"
               }
-              context={`el plan ${plan.name}`}
             >
               Conversemos
             </ContactLink>

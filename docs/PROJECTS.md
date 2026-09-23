@@ -25,7 +25,7 @@ Agregar una entrada a `projects` en `src/lib/content.ts`. No duplicar páginas n
 
 Usar identificadores únicos, en minúsculas y con guiones. `generateStaticParams`, navegación y sitemap consumen el mismo catálogo. Volver a desplegar para generar la nueva ruta. El tema define la presentación de Agency, no modifica el sitio externo. Para una nueva dirección visual, ampliar la unión `theme` y su clase CSS.
 
-Añadir una captura propia autorizada a `public/projects/` y referenciarla como `/projects/nombre.webp`. Capturar el sitio sin datos privados, optimizar a WebP y escribir un texto alternativo fiel. Una imagen de referencia no debe presentarse como captura real; medicina estética usa una fotografía ilustrativa y lo indica.
+Añadir una captura propia autorizada a `public/projects/` y referenciarla como `/projects/nombre.webp`. Capturar el sitio sin datos privados, optimizar a WebP y escribir un texto alternativo fiel. Una imagen de referencia no debe presentarse como captura real. Los sitios externos muestran directamente su web publicada en el visor; no se construye una portada sustitutiva.
 
 Para otra demo interna, crear su componente, extender la unión `demo` de `Project` y añadir su selección explícita en el visor. La floristería es ficticia: no tiene checkout ni recibe pedidos.
 
@@ -35,11 +35,11 @@ Actualizar únicamente `url` en su entrada. Mantener `id: "medicina-estetica"` p
 
 ## Incrustación y sus límites
 
-El iframe se monta solo al pulsar «Explorar sitio» y se desmonta al cerrar o cambiar de negocio. Usa navegación normal del sitio externo. El visor no intercepta sus enlaces, formularios ni solicitudes: medicina estética es el sitio real, no una copia ficticia.
+El iframe se monta al seleccionar un negocio externo, con carga diferida del navegador. Su header real se muestra desde la vista previa. Mientras no se pulsa «Explorar sitio», una capa captura los clics y el iframe queda inerte para que el scroll y el teclado sigan en Agency. Al explorar se habilita la navegación; al cerrar vuelve a quedar inerte sin desmontarlo. Cambiar de negocio sí lo desmonta. Usa navegación normal del sitio externo. El visor no intercepta sus enlaces, formularios ni solicitudes: medicina estética es el sitio real, no una copia ficticia.
 
 `X-Frame-Options` y `Content-Security-Policy: frame-ancestors` se configuran en el sitio que se incrusta. Comprobarlas con una petición HTTP y verificar también en un navegador. La URL de medicina estética respondió 200 sin restricciones de estas cabeceras durante la implementación y cargó dentro del visor en escritorio y móvil.
 
-Si un sitio bloquea la incrustación, establecer `embeddable: false`: al explorar se presenta el enlace externo. No usar proxies para evadir sus restricciones. Debido a las políticas del navegador no es posible detectar de forma fiable todos los fallos de iframes de terceros; el enlace externo permanece siempre disponible y el visor muestra ayuda. `onError` cubre solo los fallos que el navegador notifique.
+Si un sitio bloquea la incrustación, establecer `embeddable: false`: se presenta el enlace externo en lugar del iframe. No usar proxies para evadir sus restricciones. Debido a las políticas del navegador no es posible detectar de forma fiable todos los fallos de iframes de terceros; el enlace externo permanece siempre disponible y el visor muestra ayuda. `onError` cubre solo los fallos que el navegador notifique.
 
 ## Fondo de video futuro
 

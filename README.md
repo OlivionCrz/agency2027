@@ -16,10 +16,10 @@ Abrir http://localhost:3000. Editar `.env.local` con el dominio y WhatsApp; rein
 
 ```dotenv
 NEXT_PUBLIC_SITE_URL=https://tu-dominio.com
-NEXT_PUBLIC_WHATSAPP_NUMBER=50612345678
+NEXT_PUBLIC_WHATSAPP_NUMBER=50685090277
 ```
 
-El número anterior es solo una muestra de formato: usar tu número real. Si está vacío o no cumple el formato, los botones llevan a la sección de contacto y no generan enlaces WhatsApp. No se guardan consultas ni datos de visitantes.
+El número de Agency es 50685090277 y el mensaje predeterminado es «Hola, quiero cotizar mi sitio web». Si la variable no existe, se usa ese número. Si está vacío o no cumple el formato, los botones llevan a la sección de contacto y no generan enlaces WhatsApp. No se guardan consultas ni datos de visitantes.
 
 ## Comandos
 

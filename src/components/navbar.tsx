@@ -9,10 +9,10 @@ const links = [
   ["SEO", "seo"],
   ["Planes", "planes"],
 ];
-export function Navbar() {
+export function Navbar({ overlay = false }: { overlay?: boolean }) {
   const [open, setOpen] = useState(false);
   return (
-    <header className="navbar">
+    <header className={`navbar ${overlay ? "is-overlay" : ""}`}>
       <Link href="/" className="wordmark" aria-label={`${site.name}, inicio`}>
         {site.name.toLowerCase()}
         <span>✳</span>
