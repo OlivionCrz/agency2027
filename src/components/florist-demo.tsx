@@ -4,5 +4,94 @@ import { ArrowUpRight, Flower2 } from "lucide-react";
 import { projects } from "@/lib/content";
 export function FloristDemo() {
   const [section, setSection] = useState("inicio");
-  return <div className="florist-demo"><div className="florist-nav"><span><Flower2 size={21} /> flora.</span><nav aria-label="Demostración de floristería">{["inicio", "colección", "nosotros"].map(item => <button key={item} aria-pressed={section === item} onClick={() => setSection(item)}>{item}</button>)}</nav></div><div className="florist-body">{section === "inicio" ? <><div><p className="florist-kicker">FLORES PARA LO COTIDIANO Y LO EXTRAORDINARIO</p><h3>Hay cosas que<br />se dicen con flores.</h3><p>Un gesto pequeño. Una emoción enorme.<br />Arreglos pensados para acompañar tus momentos.</p><button onClick={() => setSection("colección")} className="florist-cta">Descubre la colección <ArrowUpRight size={17} /></button></div><img src={projects[0].image} alt={projects[0].imageAlt} /></> : section === "colección" ? <div className="florist-collection"><p className="florist-kicker">NUESTRA COLECCIÓN · CATÁLOGO DE MUESTRA</p><h3>Para cada momento.</h3><div className="bouquets">{["Un nuevo comienzo", "Porque sí", "Siempre contigo"].map((name, i) => <article key={name}><img style={{ objectPosition: `${i * 40}% center` }} src={projects[0].image} alt={`Inspiración floral para ${name}`} /><h4>{name}</h4><p>Arreglo de temporada · Ejemplo</p></article>)}</div></div> : <div className="florist-about"><Flower2 size={44} /><p className="florist-kicker">HECHO CON CALMA, ENTREGADO CON CARIÑO</p><h3>La belleza está<br />en los detalles.</h3><p>Flora es una marca ficticia creada para mostrar cómo podría sentirse tu floristería en internet. Aquí podríamos contar tu historia, compartir tu horario y conectar a tus clientes contigo.</p></div>}</div><div className="demo-note">Demostración de Agency · Marca ficticia · No se reciben pedidos</div></div>;
+  return (
+    <div className="florist-demo">
+      <div className="florist-nav">
+        <span>
+          <Flower2 size={21} /> flora.
+        </span>
+        <nav aria-label="Demostración de floristería">
+          {["inicio", "colección", "nosotros"].map((item) => (
+            <button
+              key={item}
+              aria-pressed={section === item}
+              onClick={() => setSection(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </nav>
+      </div>
+      <div className="florist-body">
+        {section === "inicio" ? (
+          <>
+            <div>
+              <p className="florist-kicker">
+                FLORES PARA LO COTIDIANO Y LO EXTRAORDINARIO
+              </p>
+              <h3>
+                Hay cosas que
+                <br />
+                se dicen con flores.
+              </h3>
+              <p>
+                Un gesto pequeño. Una emoción enorme.
+                <br />
+                Arreglos pensados para acompañar tus momentos.
+              </p>
+              <button
+                onClick={() => setSection("colección")}
+                className="florist-cta"
+              >
+                Descubre la colección <ArrowUpRight size={17} />
+              </button>
+            </div>
+            <img src={projects[0].image} alt={projects[0].imageAlt} />
+          </>
+        ) : section === "colección" ? (
+          <div className="florist-collection">
+            <p className="florist-kicker">
+              NUESTRA COLECCIÓN · CATÁLOGO DE MUESTRA
+            </p>
+            <h3>Para cada momento.</h3>
+            <div className="bouquets">
+              {["Un nuevo comienzo", "Porque sí", "Siempre contigo"].map(
+                (name, i) => (
+                  <article key={name}>
+                    <img
+                      style={{ objectPosition: `${i * 40}% center` }}
+                      src={projects[0].image}
+                      alt={`Inspiración floral para ${name}`}
+                    />
+                    <h4>{name}</h4>
+                    <p>Arreglo de temporada · Ejemplo</p>
+                  </article>
+                ),
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="florist-about">
+            <Flower2 size={44} />
+            <p className="florist-kicker">
+              HECHO CON CALMA, ENTREGADO CON CARIÑO
+            </p>
+            <h3>
+              La belleza está
+              <br />
+              en los detalles.
+            </h3>
+            <p>
+              Flora es una marca ficticia creada para mostrar cómo podría
+              sentirse tu floristería en internet. Aquí podríamos contar tu
+              historia, compartir tu horario y conectar a tus clientes contigo.
+            </p>
+          </div>
+        )}
+      </div>
+      <div className="demo-note">
+        Demostración de Agency · Marca ficticia · No se reciben pedidos
+      </div>
+    </div>
+  );
 }
