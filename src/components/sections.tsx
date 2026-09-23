@@ -2,18 +2,208 @@ import { ArrowUpRight, ArrowRight, Check, Globe2, Search } from "lucide-react";
 import { plans, services, site, whatsappUrl } from "@/lib/content";
 import { ContactLink } from "./contact";
 export function Services() {
-  return <section id="servicios" className="services section-shell"><div className="section-label"><span>02 / LO QUE HACEMOS</span><span>DE LA IDEA AL SIGUIENTE PASO</span></div><div className="services-intro"><h2>No necesitas ser grande<br />para <span>dar un gran paso.</span></h2><p>Trabajamos contigo, de cerca.<br />Sin vueltas ni soluciones que no necesitas.</p></div><div className="service-list">{services.map(service => <article className="service-row" key={service.number}><span className="service-number">/{service.number}</span><h3>{service.title}</h3><div><p>{service.text}</p><span className="service-tags">{service.tags}</span></div><ArrowUpRight size={27} className="service-arrow" /></article>)}</div></section>;
+  return (
+    <section id="servicios" className="services section-shell">
+      <div className="section-label">
+        <span>02 / LO QUE HACEMOS</span>
+        <span>DE LA IDEA AL SIGUIENTE PASO</span>
+      </div>
+      <div className="services-intro">
+        <h2>
+          No necesitas ser grande
+          <br />
+          para <span>dar un gran paso.</span>
+        </h2>
+        <p>
+          Trabajamos contigo, de cerca.
+          <br />
+          Sin vueltas ni soluciones que no necesitas.
+        </p>
+      </div>
+      <div className="service-list">
+        {services.map((service) => (
+          <article className="service-row" key={service.number}>
+            <span className="service-number">/{service.number}</span>
+            <h3>{service.title}</h3>
+            <div>
+              <p>{service.text}</p>
+              <span className="service-tags">{service.tags}</span>
+            </div>
+            <ArrowUpRight size={27} className="service-arrow" />
+          </article>
+        ))}
+      </div>
+    </section>
+  );
 }
 export function Seo() {
-  return <section id="seo" className="seo section-shell"><div className="section-label"><span>03 / QUE TE ENCUENTREN</span><span>SEO CON PROPÓSITO</span></div><div className="seo-layout"><div><h2>Una buena web<br />merece <span>ser encontrada.</span></h2><p className="section-description">Cuando alguien busca lo que ofreces, tu sitio puede ser el inicio de una conversación. Lo construimos con esa intención.</p><div className="seo-search" aria-label="Ejemplo de búsqueda local"><Search size={19} /><span>diseño web en Costa Rica</span><ArrowRight size={20} /></div><span className="search-note">Una búsqueda es una oportunidad de conectar.</span></div><div className="seo-points">{[["01", "Hablar como tus clientes", "Contenido claro sobre tus servicios y las zonas donde realmente trabajas. Como Heredia, si tu negocio atiende allí."], ["02", "Hacerlo fácil para Google", "Títulos, estructura e información que ayuden a los buscadores a entender cada página."], ["03", "Cuidar cada segundo", "Velocidad, imágenes optimizadas y una experiencia que funcione bien en el celular."]].map(([n, title, description]) => <article key={n}><span>{n}</span><div><h3>{title}</h3><p>{description}</p></div></article>)}<p className="seo-note">El posicionamiento se trabaja con tiempo. No prometemos el primer lugar; sí una base bien construida.</p></div></div></section>;
+  return (
+    <section id="seo" className="seo section-shell">
+      <div className="section-label">
+        <span>03 / QUE TE ENCUENTREN</span>
+        <span>SEO CON PROPÓSITO</span>
+      </div>
+      <div className="seo-layout">
+        <div>
+          <h2>
+            Una buena web
+            <br />
+            merece <span>ser encontrada.</span>
+          </h2>
+          <p className="section-description">
+            Cuando alguien busca lo que ofreces, tu sitio puede ser el inicio de
+            una conversación. Lo construimos con esa intención.
+          </p>
+          <div className="seo-search" aria-label="Ejemplo de búsqueda local">
+            <Search size={19} />
+            <span>diseño web en Costa Rica</span>
+            <ArrowRight size={20} />
+          </div>
+          <span className="search-note">
+            Una búsqueda es una oportunidad de conectar.
+          </span>
+        </div>
+        <div className="seo-points">
+          {[
+            [
+              "01",
+              "Hablar como tus clientes",
+              "Contenido claro sobre tus servicios y las zonas donde realmente trabajas. Como Heredia, si tu negocio atiende allí.",
+            ],
+            [
+              "02",
+              "Hacerlo fácil para Google",
+              "Títulos, estructura e información que ayuden a los buscadores a entender cada página.",
+            ],
+            [
+              "03",
+              "Cuidar cada segundo",
+              "Velocidad, imágenes optimizadas y una experiencia que funcione bien en el celular.",
+            ],
+          ].map(([n, title, description]) => (
+            <article key={n}>
+              <span>{n}</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+            </article>
+          ))}
+          <p className="seo-note">
+            El posicionamiento se trabaja con tiempo. No prometemos el primer
+            lugar; sí una base bien construida.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
 }
 export function Plans() {
-  return <section id="planes" className="plans section-shell"><div className="section-label"><span>04 / A TU MEDIDA</span><span>UN PUNTO DE PARTIDA, NO UN MOLDE</span></div><div className="plans-heading"><h2>Empieza donde estás.<br /><span>Crece desde ahí.</span></h2><p>Conversamos sobre lo que necesitas y<br />te damos una propuesta clara, sin sorpresas.</p></div><div className="plans-grid">{plans.map((plan, i) => <article key={plan.name} className={`plan-card ${plan.featured ? "featured" : ""}`}><div className="plan-top"><span>0{i + 1}</span>{plan.featured && <span>EL SIGUIENTE PASO</span>}</div><h3>{plan.name}</h3><p>{plan.subtitle}</p><div className="plan-price">A tu medida<span>Cotización según el alcance</span></div><ul>{plan.features.map(feature => <li key={feature}><Check size={16} />{feature}</li>)}</ul><ContactLink className={plan.featured ? "button button-green" : "button button-outline"} context={`el plan ${plan.name}`}>Conversemos</ContactLink></article>)}</div><p className="plans-note">Definimos contigo tiempos, revisiones, dominio, hosting y mantenimiento antes de comenzar.</p></section>;
+  return (
+    <section id="planes" className="plans section-shell">
+      <div className="section-label">
+        <span>04 / A TU MEDIDA</span>
+        <span>UN PUNTO DE PARTIDA, NO UN MOLDE</span>
+      </div>
+      <div className="plans-heading">
+        <h2>
+          Empieza donde estás.
+          <br />
+          <span>Crece desde ahí.</span>
+        </h2>
+        <p>
+          Conversamos sobre lo que necesitas y<br />
+          te damos una propuesta clara, sin sorpresas.
+        </p>
+      </div>
+      <div className="plans-grid">
+        {plans.map((plan, i) => (
+          <article
+            key={plan.name}
+            className={`plan-card ${plan.featured ? "featured" : ""}`}
+          >
+            <div className="plan-top">
+              <span>0{i + 1}</span>
+              {plan.featured && <span>EL SIGUIENTE PASO</span>}
+            </div>
+            <h3>{plan.name}</h3>
+            <p>{plan.subtitle}</p>
+            <div className="plan-price">
+              A tu medida<span>Cotización según el alcance</span>
+            </div>
+            <ul>
+              {plan.features.map((feature) => (
+                <li key={feature}>
+                  <Check size={16} />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <ContactLink
+              className={
+                plan.featured ? "button button-green" : "button button-outline"
+              }
+              context={`el plan ${plan.name}`}
+            >
+              Conversemos
+            </ContactLink>
+          </article>
+        ))}
+      </div>
+      <p className="plans-note">
+        Definimos contigo tiempos, revisiones, dominio, hosting y mantenimiento
+        antes de comenzar.
+      </p>
+    </section>
+  );
 }
 export function ContactSection() {
   const configured = Boolean(whatsappUrl());
-  return <section id="contacto" className="contact-section section-shell"><div className="section-label"><span>05 / HAGAMOS QUE PASE</span><Globe2 size={18} /></div><p className="eyebrow">DE UN EMPRENDIMIENTO A OTRO.</p><h2>Lo próximo<br />empieza <span>contigo.</span></h2><div className="contact-bottom"><p>Cuéntanos qué tienes en mente.<br />Le damos forma juntos.</p>{configured ? <ContactLink>Hablemos por WhatsApp</ContactLink> : <span className="contact-pending">Muy pronto abrimos conversaciones.<br /><span>Estamos preparando nuestro canal de contacto.</span></span>}</div></section>;
+  return (
+    <section id="contacto" className="contact-section section-shell">
+      <div className="section-label">
+        <span>05 / HAGAMOS QUE PASE</span>
+        <Globe2 size={18} />
+      </div>
+      <p className="eyebrow">DE UN EMPRENDIMIENTO A OTRO.</p>
+      <h2>
+        Lo próximo
+        <br />
+        empieza <span>contigo.</span>
+      </h2>
+      <div className="contact-bottom">
+        <p>
+          Cuéntanos qué tienes en mente.
+          <br />
+          Le damos forma juntos.
+        </p>
+        {configured ? (
+          <ContactLink>Hablemos por WhatsApp</ContactLink>
+        ) : (
+          <span className="contact-pending">
+            Muy pronto abrimos conversaciones.
+            <br />
+            <span>Estamos preparando nuestro canal de contacto.</span>
+          </span>
+        )}
+      </div>
+    </section>
+  );
 }
 export function Footer() {
-  return <footer className="footer"><a className="wordmark" href="/">{site.name.toLowerCase()}<span>®</span></a><p>Costa Rica. Ideas sin fronteras.</p><span>© {new Date().getFullYear()} {site.name}</span><a href="#contenido" aria-label="Volver al inicio">Volver arriba ↑</a></footer>;
+  return (
+    <footer className="footer">
+      <a className="wordmark" href="/">
+        {site.name.toLowerCase()}
+        <span>✳</span>
+      </a>
+      <p>Costa Rica. Ideas sin fronteras.</p>
+      <span>
+        © {new Date().getFullYear()} {site.name}
+      </span>
+      <a href="#contenido" aria-label="Volver al inicio">
+        Volver arriba ↑
+      </a>
+    </footer>
+  );
 }
