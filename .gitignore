@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.npm-cache/
+.env*
+!.env.example
+.vercel/
+*.tsbuildinfo
+playwright-report/
+test-results/
+artifacts/
+*.log
